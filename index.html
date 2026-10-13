@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio</title>
+  <meta name="description" content="Portfolio and resume: projects, labs, and contact information.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#about" id="brand"></a>
+      <nav class="tabs" role="tablist" aria-label="Sections">
+        <a href="#about" role="tab" data-tab="about">About</a>
+        <a href="#projects" role="tab" data-tab="projects">Projects</a>
+        <a href="#labs" role="tab" data-tab="labs">Labs</a>
+        <a href="#contact" role="tab" data-tab="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="about" class="panel" role="tabpanel">
+      <div class="hero">
+        <img id="photo" class="photo" alt="Profile photo">
+        <div>
+          <p class="eyebrow" id="available"></p>
+          <h1 id="name"></h1>
+          <p class="lead" id="title"></p>
+          <div class="actions" id="hero-actions"></div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div id="bio" class="prose"></div>
+        <aside class="card">
+          <dl id="facts" class="facts"></dl>
+        </aside>
+      </div>
+      <h2>Skills</h2>
+      <ul id="skills" class="chips"></ul>
+      <div id="certs-block" hidden>
+        <h2>Certifications</h2>
+        <ul id="certs" class="list"></ul>
+      </div>
+    </section>
+
+    <section id="projects" class="panel" role="tabpanel" hidden>
+      <h1>Projects</h1>
+      <p class="muted">Click a project to see how it works: data storage, tools, and APIs.</p>
+      <div id="project-list" class="stack"></div>
+    </section>
+
+    <section id="labs" class="panel" role="tabpanel" hidden>
+      <h1>Labs</h1>
+      <p class="muted">Hands-on labs from coursework and my home lab.</p>
+      <div id="lab-list" class="cards"></div>
+    </section>
+
+    <section id="contact" class="panel" role="tabpanel" hidden>
+      <h1>Contact</h1>
+      <p class="lead" id="contact-blurb"></p>
+      <div id="contact-list" class="contact-list"></div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <span id="footer-text"></span>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
