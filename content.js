@@ -18,7 +18,7 @@ window.SITE = {
   name: "Andrew Rogers",
   role: "IT student building apps with AI, 3D graphics and encryption",
   // Put your photo in the "assets" folder and update the file name here.
-  photo: "assets/photo.svg",
+  photo: "assets/photo.jpg",
   resume: "", // e.g. "assets/resume.pdf" — leave "" to hide the button
   available: "Open to internships and entry-level IT roles",
 
@@ -340,9 +340,9 @@ window.SITE = {
 
   contact: {
     blurb: "Email is the fastest way to reach me. I usually reply within a day.",
-    email: "you@example.com",
+    email: "roger5am@dukes.jmu.edu",
     phone: "", // optional
-    linkedin: "https://www.linkedin.com/in/your-profile",
+    linkedin: "https://www.linkedin.com/in/andrew-r-b19b5434b/",
     github: "https://github.com/ARogers8",
   },
 };
