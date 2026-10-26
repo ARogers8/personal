@@ -49,6 +49,7 @@
 
   const actions = $("hero-actions");
   actions.append(button("See my projects", "#projects", true));
+  actions.append(button("See my labs", "#labs"));
   actions.append(button("Get in touch", "#contact"));
   if (S.resume) {
     actions.append(button("Résumé (PDF) ↗", S.resume));
