@@ -26,6 +26,10 @@
 }
 
 /* Color themes. Pick one with `palette` in content.js. */
+/* Aurora with the purple swapped out: same navy, cyan and pink blend. */
+:root[data-palette="aurora-mint"] { --accent: #34d399; --name-mid: #b5f5dc; --p2: #34d399; }
+:root[data-palette="aurora-coral"] { --accent: #ff8a5c; --name-mid: #ffd0bd; --p2: #ff8a5c; }
+:root[data-palette="aurora-lime"] { --accent: #a3e635; --name-mid: #e2f7b8; --p2: #facc15; }
 :root[data-palette="ember"] {
   --bg: #0d0908; --surface: #17110f; --surface-2: #201814; --line: rgba(255, 190, 160, 0.12);
   --text: #fff3ec; --muted: #b39d93; --soft: #e3d3cb; --text-2: #f0e2da; --name-mid: #ffc7a8;

@@ -16,7 +16,7 @@
 
 window.SITE = {
   name: "Andrew Rogers",
-  // Color theme: "aurora" (purple/blue), "ember", "jade", "sunset" or "crimson".
+  // Color theme: "aurora" (purple/blue), "aurora-mint", "aurora-coral", "aurora-lime", "ember", "jade", "sunset" or "crimson".
   palette: "aurora",
   role: "IT student focused on networking, encryption and full-stack apps",
   // Put your photo in the "assets" folder and update the file name here.
