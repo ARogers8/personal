@@ -16,6 +16,8 @@
 
 window.SITE = {
   name: "Andrew Rogers",
+  // Color theme: "aurora" (purple/blue), "aurora-mint", "aurora-coral", "aurora-lime", "ember", "jade", "sunset" or "crimson".
+  palette: "aurora-mint",
   role: "IT student focused on networking, encryption and full-stack apps",
   // Put your photo in the "assets" folder and update the file name here.
   photo: "assets/photo.jpg",
@@ -49,7 +51,7 @@ window.SITE = {
       name: "ALLIN1",
       kind: "Full-stack web app",
       date: "Oct 2026", // when you built it
-      color: "#c6f432",
+      color: "var(--p1)",
       summary:
         "An all-in-one fitness tracker that turns food, workouts, steps and daily weigh-ins into one number: how much to eat today to cut, maintain or bulk. Type what you ate or snap a photo, and the AI estimates the nutrition and asks follow-up questions when the answer would change the calories.",
       tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Claude API"],
@@ -94,7 +96,7 @@ window.SITE = {
       kind: "3D web app",
       date: "Oct 2026 – present", // when you built it
       status: "Work in progress", // shows as a badge; delete this line when it's done
-      color: "#a78bfa",
+      color: "var(--p2)",
       summary:
         "Try on clothes from any store on your own 3D model. Paste a link to a single piece (Zara pants, PacSun sneakers), pick your size, and see the whole outfit head to toe. It estimates how each size will fit you, and every piece is saved with a link back to buy it.",
       tags: ["React", "three.js", "Node.js", "Express", "Computer vision"],
@@ -139,7 +141,7 @@ window.SITE = {
       name: "iMET",
       kind: "macOS app · Security",
       date: "Oct 2026", // when you built it
-      color: "#22d3ee",
+      color: "var(--p3)",
       summary:
         "Send an iMessage that looks like ordinary chatter (\"hey! how's your vacation going?\") but secretly carries a real, encrypted message. Only someone with the same shared code can read it. The desktop app encrypts, hides and sends for you, and decrypts hidden replies right in the conversation.",
       tags: ["Python", "AES-256-GCM", "Steganography", "AppleScript", "SQLite"],
@@ -209,7 +211,7 @@ window.SITE = {
       name: "Cinedle",
       kind: "Web game",
       date: "Oct 2026", // when you built it
-      color: "#ff6b5a",
+      color: "var(--p4)",
       summary:
         "A daily movie-guessing game in the style of Wordle. Guess the film from one famous quote, or from six stills that get easier with every wrong guess. It has four difficulty levels, a daily puzzle that's the same for everyone with streaks and a shareable result grid, and an endless mode.",
       tags: ["JavaScript", "HTML/CSS", "TMDB API", "GitHub Actions"],

@@ -37,6 +37,7 @@
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   // ---- About ----
+  if (S.palette && S.palette !== "aurora") document.documentElement.dataset.palette = S.palette;
   document.title = `${S.name} · Portfolio`;
   $("brand").textContent = S.name;
   $("name").textContent = S.name;
