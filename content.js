@@ -16,7 +16,7 @@
 
 window.SITE = {
   name: "Andrew Rogers",
-  role: "IT student building apps with AI, 3D graphics and encryption",
+  role: "IT student focused on networking, encryption and full-stack apps",
   // Put your photo in the "assets" folder and update the file name here.
   photo: "assets/photo.jpg",
   resume: "", // put your PDF in assets and set this to "assets/resume.pdf"; leave "" to hide the résumé buttons

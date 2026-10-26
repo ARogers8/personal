@@ -1,6 +1,6 @@
 # personal
 
-My portfolio / hire-me website. Plain HTML, CSS and JavaScript: no build step, hosted free on GitHub Pages.
+My portfolio / hire-me website. Plain HTML, CSS and JavaScript: no build step, hosted free on Vercel at www.andrewrogers.app.
 
 ## Editing the content
 
@@ -12,26 +12,12 @@ Almost everything lives in **`content.js`**: name, bio, skills, projects (with i
 
 To preview locally, just open `index.html` in a browser.
 
-## Publishing on GitHub Pages
+## Publishing on Vercel (www.andrewrogers.app)
 
-1. In the repo, go to **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`, and save.
-3. The site appears at `https://arogers8.github.io/personal/` within a minute or two.
+The site is plain HTML, CSS and JavaScript, so Vercel serves it as-is with no build step. Every push to `main` updates the live site, and every pull request gets its own preview link.
 
-## Custom domain: www.andrewrogers.app
-
-The `CNAME` file in this repo already tells GitHub Pages to serve the site at `www.andrewrogers.app`.
-
-1. In the repo, go to **Settings → Pages** and confirm **Custom domain** shows `www.andrewrogers.app`.
-2. In your DNS provider for `andrewrogers.app`, add these records (remove any old A, AAAA or CNAME records for `@` and `www` first):
-
-   | Type  | Name  | Value |
-   |-------|-------|-------|
-   | CNAME | `www` | `arogers8.github.io` |
-   | A     | `@`   | `185.199.108.153` |
-   | A     | `@`   | `185.199.109.153` |
-   | A     | `@`   | `185.199.110.153` |
-   | A     | `@`   | `185.199.111.153` |
-
-   The A records make `andrewrogers.app` (without www) redirect to `www.andrewrogers.app`. If your DNS is on Cloudflare, set these records to **DNS only** (grey cloud) so GitHub can issue the HTTPS certificate.
-3. DNS can take up to a day to spread. Once **Settings → Pages** shows the domain check passing, tick **Enforce HTTPS**. `.app` domains only work over HTTPS, so the site won't load until this is done.
+1. Go to https://vercel.com/new and import the `personal` repo.
+2. Leave **Framework Preset** as **Other**, and leave the build command and output directory empty. Click **Deploy**.
+3. In the new project, open **Settings → Domains** and add `www.andrewrogers.app`. When Vercel asks, also add `andrewrogers.app` and choose to redirect it to `www.andrewrogers.app`.
+4. If `andrewrogers.app` is registered or managed in Vercel, the DNS is set up for you. If it's managed somewhere else, add the records Vercel shows on the Domains page at that provider.
+5. Vercel issues the HTTPS certificate on its own. `.app` domains only work over HTTPS, so wait until the domain shows **Valid Configuration** before testing it.
