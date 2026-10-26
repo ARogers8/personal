@@ -78,6 +78,8 @@ p { margin: 0 0 1rem; }
 }
 .tabs a:hover { color: var(--text); }
 .tabs a[aria-current="page"] { background: var(--text); color: var(--bg); }
+.tabs a.nav-resume { color: var(--accent-2); }
+.tabs a.nav-resume:hover { color: var(--text); }
 
 main.wrap { padding-top: 40px; padding-bottom: 40px; }
 .panel { animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
@@ -283,6 +285,7 @@ main.wrap { padding-top: 40px; padding-bottom: 40px; }
   .project-index { text-align: left; padding: 0; }
   .header-inner { justify-content: center; }
   .brand { display: none; }
+  .tabs a.nav-resume { display: none; }
   h2 { margin-top: 3rem; }
 }
 @media (prefers-reduced-motion: reduce) {

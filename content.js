@@ -19,7 +19,7 @@ window.SITE = {
   role: "IT student building apps with AI, 3D graphics and encryption",
   // Put your photo in the "assets" folder and update the file name here.
   photo: "assets/photo.jpg",
-  resume: "", // e.g. "assets/resume.pdf" — leave "" to hide the button
+  resume: "", // put your PDF in assets and set this to "assets/resume.pdf"; leave "" to hide the résumé buttons
   available: "Open to internships and entry-level IT roles",
 
   about: {
