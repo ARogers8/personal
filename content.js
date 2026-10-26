@@ -19,19 +19,19 @@ window.SITE = {
   role: "IT student building apps with AI, 3D graphics and encryption",
   // Put your photo in the "assets" folder and update the file name here.
   photo: "assets/photo.jpg",
-  resume: "", // e.g. "assets/resume.pdf" — leave "" to hide the button
+  resume: "", // put your PDF in assets and set this to "assets/resume.pdf"; leave "" to hide the résumé buttons
   available: "Open to internships and entry-level IT roles",
 
   about: {
     paragraphs: [
-      "I'm an Information Technology student at James Madison University, graduating [Month Year]. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
-      "I'm looking for an internship or entry-level role in [IT support / networking / cloud / software development]. I learn fast, document what I build, and like shipping things people actually use.",
+      "I'm an Information Technology student at James Madison University, graduating in December 2027. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
+      "I'm looking for an internship or entry-level role in software development, networking or IT. I learn fast, document what I build, and like shipping things people actually use.",
     ],
     facts: [
       { label: "School", value: "James Madison University" },
       { label: "Major", value: "Information Technology" },
-      { label: "Graduating", value: "[Month Year]" },
-      { label: "Location", value: "[City, State]" },
+      { label: "Graduating", value: "Dec 2027" },
+      { label: "Location", value: "Arlington, Virginia" },
     ],
     skills: [
       "JavaScript", "TypeScript", "Python", "React", "Next.js", "Node.js",
@@ -48,6 +48,7 @@ window.SITE = {
     {
       name: "ALLIN1",
       kind: "Full-stack web app",
+      date: "Oct 2026", // when you built it
       color: "#c6f432",
       summary:
         "An all-in-one fitness tracker that turns food, workouts, steps and daily weigh-ins into one number: how much to eat today to cut, maintain or bulk. Type what you ate or snap a photo, and the AI estimates the nutrition and asks follow-up questions when the answer would change the calories.",
@@ -91,6 +92,7 @@ window.SITE = {
     {
       name: "Fitcheck",
       kind: "3D web app",
+      date: "Oct 2026 – present", // when you built it
       status: "Work in progress", // shows as a badge; delete this line when it's done
       color: "#a78bfa",
       summary:
@@ -136,6 +138,7 @@ window.SITE = {
     {
       name: "iMET",
       kind: "macOS app · Security",
+      date: "Oct 2026", // when you built it
       color: "#22d3ee",
       summary:
         "Send an iMessage that looks like ordinary chatter (\"hey! how's your vacation going?\") but secretly carries a real, encrypted message. Only someone with the same shared code can read it. The desktop app encrypts, hides and sends for you, and decrypts hidden replies right in the conversation.",
@@ -205,6 +208,7 @@ window.SITE = {
     {
       name: "Cinedle",
       kind: "Web game",
+      date: "Oct 2026", // when you built it
       color: "#ff6b5a",
       summary:
         "A daily movie-guessing game in the style of Wordle. Guess the film from one famous quote, or from six stills that get easier with every wrong guess. It has four difficulty levels, a daily puzzle that's the same for everyone with streaks and a shareable result grid, and an endless mode.",

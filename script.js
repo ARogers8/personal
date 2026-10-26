@@ -49,7 +49,12 @@
   const actions = $("hero-actions");
   actions.append(button("See my projects", "#projects", true));
   actions.append(button("Get in touch", "#contact"));
-  if (S.resume) actions.append(button("Résumé", S.resume));
+  if (S.resume) {
+    actions.append(button("Résumé (PDF) ↗", S.resume));
+    // Also offer it in the top bar, next to the tabs.
+    const nav = document.querySelector(".tabs");
+    nav.append(el("a", { class: "nav-resume", href: S.resume, target: "_blank", rel: "noopener", text: "Résumé ↗" }));
+  }
 
   S.about.paragraphs.forEach((p) => $("bio").append(el("p", { text: p })));
   S.about.facts.forEach((f) => {
@@ -117,7 +122,7 @@
       el("article", { class: "project", id: `project-${id}`, style: `--c:${p.color}` }, [
         el("div", { class: "project-index mono", text: String(n + 1).padStart(2, "0") }),
         el("div", { class: "project-main" }, [
-          el("p", { class: "project-kind mono", text: p.kind }),
+          el("p", { class: "project-kind mono", text: [p.kind, p.date].filter(Boolean).join(" · ") }),
           el("h2", { class: "project-name" }, [
             document.createTextNode(p.name),
             p.status && el("span", { class: "wip mono", text: p.status }),
@@ -161,6 +166,7 @@
   const C = S.contact;
   $("contact-blurb").textContent = C.blurb;
   const rows = [
+    S.resume && ["Résumé", "View or download (PDF)", S.resume],
     C.email && ["Email", C.email, `mailto:${C.email}`, true],
     C.phone && ["Phone", C.phone, `tel:${C.phone.replace(/[^\d+]/g, "")}`, true],
     C.linkedin && ["LinkedIn", C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), C.linkedin],
@@ -169,7 +175,7 @@
   rows.forEach(([label, text, href, copyable]) => {
     const card = el("div", { class: "contact-item" }, [
       el("span", { class: "contact-label mono", text: label }),
-      el("a", { class: "contact-value", href, text, ...(/^https?:/.test(href) ? { target: "_blank", rel: "noopener" } : {}) }),
+      el("a", { class: "contact-value", href, text, ...(/^https?:|\.pdf$/i.test(href) ? { target: "_blank", rel: "noopener" } : {}) }),
     ]);
     if (copyable) {
       const copy = el("button", { class: "copy mono", type: "button", text: "Copy" });
