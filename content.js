@@ -48,6 +48,7 @@ window.SITE = {
     {
       name: "ALLIN1",
       kind: "Full-stack web app",
+      date: "Oct 2026", // when you built it
       color: "#c6f432",
       summary:
         "An all-in-one fitness tracker that turns food, workouts, steps and daily weigh-ins into one number: how much to eat today to cut, maintain or bulk. Type what you ate or snap a photo, and the AI estimates the nutrition and asks follow-up questions when the answer would change the calories.",
@@ -91,6 +92,7 @@ window.SITE = {
     {
       name: "Fitcheck",
       kind: "3D web app",
+      date: "Oct 2026 – present", // when you built it
       status: "Work in progress", // shows as a badge; delete this line when it's done
       color: "#a78bfa",
       summary:
@@ -136,6 +138,7 @@ window.SITE = {
     {
       name: "iMET",
       kind: "macOS app · Security",
+      date: "Oct 2026", // when you built it
       color: "#22d3ee",
       summary:
         "Send an iMessage that looks like ordinary chatter (\"hey! how's your vacation going?\") but secretly carries a real, encrypted message. Only someone with the same shared code can read it. The desktop app encrypts, hides and sends for you, and decrypts hidden replies right in the conversation.",
@@ -205,6 +208,7 @@ window.SITE = {
     {
       name: "Cinedle",
       kind: "Web game",
+      date: "Oct 2026", // when you built it
       color: "#ff6b5a",
       summary:
         "A daily movie-guessing game in the style of Wordle. Guess the film from one famous quote, or from six stills that get easier with every wrong guess. It has four difficulty levels, a daily puzzle that's the same for everyone with streaks and a shareable result grid, and an endless mode.",

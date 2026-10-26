@@ -117,7 +117,7 @@
       el("article", { class: "project", id: `project-${id}`, style: `--c:${p.color}` }, [
         el("div", { class: "project-index mono", text: String(n + 1).padStart(2, "0") }),
         el("div", { class: "project-main" }, [
-          el("p", { class: "project-kind mono", text: p.kind }),
+          el("p", { class: "project-kind mono", text: [p.kind, p.date].filter(Boolean).join(" · ") }),
           el("h2", { class: "project-name" }, [
             document.createTextNode(p.name),
             p.status && el("span", { class: "wip mono", text: p.status }),
