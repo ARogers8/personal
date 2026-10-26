@@ -29,6 +29,11 @@
     return el("ul", { class: cls }, (items || []).map((t) => el("li", { text: t })));
   }
 
+  // Text in `backticks` is shown as code.
+  function rich(text) {
+    return text.split(/`([^`]+)`/).map((part, i) => (i % 2 ? el("code", { text: part }) : document.createTextNode(part)));
+  }
+
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   // ---- About ----
@@ -78,8 +83,8 @@
         el("span", { text: sec.title }),
       ]);
       const body = Array.isArray(sec.items)
-        ? el("ul", { class: "drawer-list" }, sec.items.map((t) => el("li", { text: t })))
-        : el("p", { text: sec.text || "" });
+        ? el(sec.ordered ? "ol" : "ul", { class: sec.ordered ? "drawer-list numbered" : "drawer-list" }, sec.items.map((t) => el("li", {}, rich(t))))
+        : el("p", {}, rich(sec.text || ""));
       const drawer = el("div", { class: "drawer", id: panelId, role: "region", "aria-label": `${label}: ${sec.title}` }, [
         el("div", { class: "drawer-inner" }, [
           el("div", { class: "drawer-box" }, [el("h4", { class: "mono", text: sec.title }), body]),
@@ -105,6 +110,7 @@
       p.links.live && button("Live site ↗", p.links.live, true),
       p.links.code && button("Source code ↗", p.links.code),
     ]);
+    const note = p.links.note && el("p", { class: "link-note" }, rich(p.links.note));
 
     $("project-list").append(
       el("article", { class: "project", id: `project-${id}`, style: `--c:${p.color}` }, [
@@ -115,6 +121,7 @@
           el("p", { class: "project-summary", text: p.summary }),
           chips(p.tags, "chips small"),
           links,
+          note,
           toggles,
           panels,
         ]),

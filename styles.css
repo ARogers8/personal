@@ -210,6 +210,19 @@ main.wrap { padding-top: 40px; padding-bottom: 40px; }
 .drawer-list li { position: relative; padding-left: 22px; color: #d6daf5; max-width: 80ch; }
 .drawer-list li::before { content: "▸"; position: absolute; left: 0; color: var(--c); }
 
+.drawer-list.numbered { counter-reset: step; }
+.drawer-list.numbered li { counter-increment: step; padding-left: 34px; }
+.drawer-list.numbered li::before {
+  content: counter(step); top: 1px; width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center; font: 600 0.72rem var(--mono);
+  background: color-mix(in srgb, var(--c) 20%, transparent); color: var(--c);
+}
+.drawer-list code, .link-note code {
+  font-family: var(--mono); font-size: 0.86em; padding: 1px 6px; border-radius: 6px;
+  background: var(--surface-2); border: 1px solid var(--line); color: var(--text); overflow-wrap: anywhere;
+}
+.link-note { margin: 12px 0 0; font-size: 0.88rem; color: var(--muted); max-width: 68ch; }
+
 /* Labs */
 .lab-grid { display: grid; gap: 18px; margin-top: 40px; }
 .lab {

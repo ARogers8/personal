@@ -96,8 +96,9 @@ window.SITE = {
         "Try on clothes from any store on your own 3D model. Paste a link to a single piece (Zara pants, PacSun sneakers), pick your size, and see the whole outfit head to toe. It estimates how each size will fit you, and every piece is saved with a link back to buy it.",
       tags: ["React", "three.js", "Node.js", "Express", "Computer vision"],
       links: {
-        live: "",
+        live: "https://fitcheck-8m41.onrender.com",
         code: "https://github.com/ARogers8/fitcheck",
+        note: "Hosted on a free server that sleeps when idle, so the first visit can take about a minute to load.",
       },
       sections: [
         {
@@ -141,8 +142,35 @@ window.SITE = {
       links: {
         live: "",
         code: "https://github.com/ARogers8/iMET",
+        note: "iMET is a Mac desktop app, so there's no web page to visit. Open \"How to set it up\" below to install it.",
       },
       sections: [
+        {
+          title: "How it works",
+          ordered: true,
+          items: [
+            "You and the other person agree on a secret code once, in person (iMET can generate a 6-word one).",
+            "You type your real message, for example `meet me at the pier at 8`.",
+            "iMET encrypts it with the code and hides the result as invisible characters inside a harmless cover message like `hey! how's your vacation going?`.",
+            "The cover message is sent through iMessage like any other text. Anyone who sees it, on either phone or in a notification, only sees the cover message.",
+            "On the other end, iMET spots the hidden payload, decrypts it with the same code and shows the real message in the conversation. Without the code it can't be read, and any tampering makes decryption fail.",
+          ],
+        },
+        {
+          title: "How to set it up",
+          ordered: true,
+          items: [
+            "You need a Mac signed in to iMessage in the Messages app, and Python 3.9 or newer (the python.org installer includes the Tkinter window toolkit iMET uses).",
+            "Download the code: `git clone https://github.com/ARogers8/iMET` then `cd iMET`.",
+            "Install it: `pip install -e .`",
+            "Make a shared code with `imet newcode` and give it to the other person in person. They install iMET the same way.",
+            "Start the app with `imet-app`, type the shared code and click Unlock. The code is only kept in memory while the app is open.",
+            "Click Add contact and enter their name and iMessage phone number (like `+15551234567`) or Apple ID email.",
+            "Type a message and click Send. The first time, macOS asks to let Terminal or Python control Messages. Click OK.",
+            "To see their replies decrypted, give the app running iMET Full Disk Access in System Settings, Privacy & Security, Full Disk Access. iMET only reads your messages database, never changes it. Sending works without this step.",
+            "Optional: `imet watch` runs a clipboard mode for other chat apps. Copy `>> your secret` and paste the cover text it puts on your clipboard.",
+          ],
+        },
         {
           title: "Technical description",
           items: [
@@ -181,7 +209,7 @@ window.SITE = {
         "A daily movie-guessing game in the style of Wordle. Guess the film from one famous quote, or from six stills that get easier with every wrong guess. It has four difficulty levels, a daily puzzle that's the same for everyone with streaks and a shareable result grid, and an endless mode.",
       tags: ["JavaScript", "HTML/CSS", "TMDB API", "GitHub Actions"],
       links: {
-        live: "",
+        live: "https://cinedle-sepia.vercel.app",
         code: "https://github.com/ARogers8/Cinedle",
       },
       sections: [
