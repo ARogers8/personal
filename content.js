@@ -24,14 +24,14 @@ window.SITE = {
 
   about: {
     paragraphs: [
-      "I'm an Information Technology student at James Madison University, graduating [Month Year]. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
-      "I'm looking for an internship or entry-level role in [IT support / networking / cloud / software development]. I learn fast, document what I build, and like shipping things people actually use.",
+      "I'm an Information Technology student at James Madison University, graduating in December 2027. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
+      "I'm looking for an internship or entry-level role in software development, networking or IT. I learn fast, document what I build, and like shipping things people actually use.",
     ],
     facts: [
       { label: "School", value: "James Madison University" },
       { label: "Major", value: "Information Technology" },
-      { label: "Graduating", value: "[Month Year]" },
-      { label: "Location", value: "[City, State]" },
+      { label: "Graduating", value: "Dec 2027" },
+      { label: "Location", value: "Arlington, Virginia" },
     ],
     skills: [
       "JavaScript", "TypeScript", "Python", "React", "Next.js", "Node.js",
