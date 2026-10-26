@@ -96,7 +96,7 @@ window.SITE = {
         "Try on clothes from any store on your own 3D model. Paste a link to a single piece (Zara pants, PacSun sneakers), pick your size, and see the whole outfit head to toe. It estimates how each size will fit you, and every piece is saved with a link back to buy it.",
       tags: ["React", "three.js", "Node.js", "Express", "Computer vision"],
       links: {
-        live: "https://fitcheck-8m41.onrender.com",
+        live: "https://www.fitcheckai.dev",
         code: "https://github.com/ARogers8/fitcheck",
         note: "Hosted on a free server that sleeps when idle, so the first visit can take about a minute to load.",
       },
@@ -209,7 +209,7 @@ window.SITE = {
         "A daily movie-guessing game in the style of Wordle. Guess the film from one famous quote, or from six stills that get easier with every wrong guess. It has four difficulty levels, a daily puzzle that's the same for everyone with streaks and a shareable result grid, and an endless mode.",
       tags: ["JavaScript", "HTML/CSS", "TMDB API", "GitHub Actions"],
       links: {
-        live: "https://cinedle-sepia.vercel.app",
+        live: "https://www.cinedle.dev",
         code: "https://github.com/ARogers8/Cinedle",
       },
       sections: [
