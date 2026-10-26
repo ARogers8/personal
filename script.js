@@ -8,6 +8,7 @@
     for (const [k, v] of Object.entries(attrs)) {
       if (k === "text") node.textContent = v;
       else if (k === "class") node.className = v;
+      else if (k === "style") node.style.cssText = v;
       else node.setAttribute(k, v);
     }
     for (const c of [].concat(children)) if (c) node.append(c);
@@ -28,24 +29,26 @@
     return el("ul", { class: cls }, (items || []).map((t) => el("li", { text: t })));
   }
 
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
   // ---- About ----
   document.title = `${S.name} · Portfolio`;
   $("brand").textContent = S.name;
   $("name").textContent = S.name;
-  $("title").textContent = S.title;
+  $("role").textContent = S.role;
   $("available").textContent = S.available || "";
   $("photo").src = S.photo;
   $("photo").alt = `Photo of ${S.name}`;
   $("footer-text").textContent = `© ${new Date().getFullYear()} ${S.name}`;
 
   const actions = $("hero-actions");
-  actions.append(button("Get in touch", "#contact", true));
-  actions.append(button("See projects", "#projects"));
+  actions.append(button("See my projects", "#projects", true));
+  actions.append(button("Get in touch", "#contact"));
   if (S.resume) actions.append(button("Résumé", S.resume));
 
   S.about.paragraphs.forEach((p) => $("bio").append(el("p", { text: p })));
   S.about.facts.forEach((f) => {
-    $("facts").append(el("dt", { text: f.label }), el("dd", { text: f.value }));
+    $("facts").append(el("div", {}, [el("dt", { class: "mono", text: f.label }), el("dd", { text: f.value })]));
   });
   $("skills").replaceWith(chips(S.about.skills));
   if (S.about.certifications && S.about.certifications.length) {
@@ -53,54 +56,77 @@
     S.about.certifications.forEach((c) => $("certs").append(el("li", { text: c })));
   }
 
-  // ---- Projects ----
-  function detailRow(label, content) {
-    if (!content || (Array.isArray(content) && !content.length)) return null;
-    const body = Array.isArray(content)
-      ? el("ul", { class: "list" }, content.map((t) => el("li", { text: t })))
-      : el("p", { text: content });
-    return el("div", { class: "detail" }, [el("h4", { text: label }), body]);
-  }
-
+  // Featured strip on the About tab: one tile per project.
   S.projects.forEach((p) => {
-    const d = p.details || {};
+    $("featured").append(
+      el("a", { class: "tile", href: `#projects`, "data-project": slug(p.name), style: `--c:${p.color}` }, [
+        el("span", { class: "tile-kind mono", text: p.kind }),
+        el("span", { class: "tile-name", text: p.name }),
+        el("span", { class: "tile-arrow", "aria-hidden": "true", text: "→" }),
+      ])
+    );
+  });
+
+  // ---- Projects ----
+  S.projects.forEach((p, n) => {
+    const id = slug(p.name);
+    const panels = el("div", { class: "drawers" });
+    const toggles = el("div", { class: "toggles" });
+
+    (p.sections || []).forEach((sec, i) => {
+      const panelId = `${id}-sec-${i}`;
+      const btn = el("button", { class: "toggle", type: "button", "aria-expanded": "false", "aria-controls": panelId }, [
+        el("span", { class: "toggle-icon", "aria-hidden": "true" }),
+        el("span", { text: sec.title }),
+      ]);
+      const body = Array.isArray(sec.items)
+        ? el("ul", { class: "drawer-list" }, sec.items.map((t) => el("li", { text: t })))
+        : el("p", { text: sec.text || "" });
+      const drawer = el("div", { class: "drawer", id: panelId, role: "region", "aria-label": `${p.name}: ${sec.title}` }, [
+        el("div", { class: "drawer-inner" }, [
+          el("div", { class: "drawer-box" }, [el("h4", { class: "mono", text: sec.title }), body]),
+        ]),
+      ]);
+      btn.addEventListener("click", () => {
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        drawer.classList.toggle("open", !open);
+      });
+      toggles.append(btn);
+      panels.append(drawer);
+    });
+
     const links = el("div", { class: "actions" }, [
-      p.links.live && button("Live site", p.links.live, true),
-      p.links.code && button("Source code", p.links.code),
+      p.links.live && button("Live site ↗", p.links.live, true),
+      p.links.code && button("Source code ↗", p.links.code),
     ]);
-    const item = el("details", { class: "project card" }, [
-      el("summary", {}, [
-        el("div", { class: "project-head" }, [
-          el("h3", { text: p.name }),
-          el("p", { class: "muted", text: p.summary }),
+
+    $("project-list").append(
+      el("article", { class: "project", id: `project-${id}`, style: `--c:${p.color}` }, [
+        el("div", { class: "project-index mono", text: String(n + 1).padStart(2, "0") }),
+        el("div", { class: "project-main" }, [
+          el("p", { class: "project-kind mono", text: p.kind }),
+          el("h2", { class: "project-name", text: p.name }),
+          el("p", { class: "project-summary", text: p.summary }),
           chips(p.tags, "chips small"),
+          links,
+          toggles,
+          panels,
         ]),
-        el("span", { class: "chev", "aria-hidden": "true" }),
-      ]),
-      el("div", { class: "project-body" }, [
-        detailRow("Overview", d.overview),
-        el("div", { class: "detail-grid" }, [
-          detailRow("How data is stored", d.dataStorage),
-          detailRow("Tools & technologies", d.tools),
-          detailRow("APIs used", d.apis),
-          detailRow("Highlights", d.highlights),
-        ]),
-        links,
-      ]),
-    ]);
-    $("project-list").append(item);
+      ])
+    );
   });
 
   // ---- Labs ----
   S.labs.forEach((l) => {
     $("lab-list").append(
-      el("article", { class: "card lab" }, [
-        el("p", { class: "eyebrow", text: [l.course, l.date].filter(Boolean).join(" · ") }),
+      el("article", { class: "lab" }, [
+        el("p", { class: "project-kind mono", text: [l.course, l.date].filter(Boolean).join(" · ") }),
         el("h3", { text: l.name }),
-        el("p", { text: l.summary }),
-        l.steps && l.steps.length && el("ol", { class: "list" }, l.steps.map((s) => el("li", { text: s }))),
+        el("p", { class: "muted", text: l.summary }),
+        l.steps && l.steps.length && el("ol", { class: "steps" }, l.steps.map((s) => el("li", { text: s }))),
         chips(l.tools, "chips small"),
-        l.link && el("div", { class: "actions" }, [button("View writeup", l.link)]),
+        l.link && el("div", { class: "actions" }, [button("View writeup ↗", l.link)]),
       ])
     );
   });
@@ -109,31 +135,48 @@
   const C = S.contact;
   $("contact-blurb").textContent = C.blurb;
   const rows = [
-    C.email && ["Email", C.email, `mailto:${C.email}`],
-    C.phone && ["Phone", C.phone, `tel:${C.phone.replace(/[^\d+]/g, "")}`],
+    C.email && ["Email", C.email, `mailto:${C.email}`, true],
+    C.phone && ["Phone", C.phone, `tel:${C.phone.replace(/[^\d+]/g, "")}`, true],
     C.linkedin && ["LinkedIn", C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), C.linkedin],
     C.github && ["GitHub", C.github.replace(/^https?:\/\/(www\.)?/, ""), C.github],
   ].filter(Boolean);
-  rows.forEach(([label, text, href]) => {
-    const a = el("a", { class: "card contact-item", href }, [
-      el("span", { class: "eyebrow", text: label }),
-      el("span", { class: "contact-value", text }),
+  rows.forEach(([label, text, href, copyable]) => {
+    const card = el("div", { class: "contact-item" }, [
+      el("span", { class: "contact-label mono", text: label }),
+      el("a", { class: "contact-value", href, text, ...(/^https?:/.test(href) ? { target: "_blank", rel: "noopener" } : {}) }),
     ]);
-    if (/^https?:/.test(href)) { a.target = "_blank"; a.rel = "noopener"; }
-    $("contact-list").append(a);
+    if (copyable) {
+      const copy = el("button", { class: "copy mono", type: "button", text: "Copy" });
+      copy.addEventListener("click", () => {
+        const done = () => { copy.textContent = "Copied"; setTimeout(() => (copy.textContent = "Copy"), 1600); };
+        if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, () => {});
+      });
+      card.append(copy);
+    }
+    $("contact-list").append(card);
   });
 
   // ---- Tabs (hash-based, so links like yoursite.com/#projects work) ----
   const tabs = ["about", "projects", "labs", "contact"];
-  function show() {
+  function show(scrollTarget) {
     const id = tabs.includes(location.hash.slice(1)) ? location.hash.slice(1) : "about";
     tabs.forEach((t) => {
       $(t).hidden = t !== id;
-      const link = document.querySelector(`[data-tab="${t}"]`);
-      link.setAttribute("aria-selected", t === id);
+      document.querySelector(`[data-tab="${t}"]`).setAttribute("aria-current", t === id ? "page" : "false");
     });
-    window.scrollTo(0, 0);
+    const target = scrollTarget && document.getElementById(scrollTarget);
+    if (target) target.scrollIntoView({ block: "start" });
+    else window.scrollTo(0, 0);
   }
-  window.addEventListener("hashchange", show);
+  // Featured tiles jump to their project on the Projects tab.
+  document.querySelectorAll(".tile").forEach((t) =>
+    t.addEventListener("click", (e) => {
+      e.preventDefault();
+      history.pushState(null, "", "#projects");
+      show(`project-${t.dataset.project}`);
+    })
+  );
+  window.addEventListener("hashchange", () => show());
+  window.addEventListener("popstate", () => show());
   show();
 })();
