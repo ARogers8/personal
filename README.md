@@ -1,6 +1,6 @@
 # personal
 
-My portfolio / hire-me website. Plain HTML, CSS and JavaScript: no build step, hosted free on GitHub Pages.
+My portfolio / hire-me website. Plain HTML, CSS and JavaScript: no build step, hosted free on Vercel at www.andrewrogers.app.
 
 ## Editing the content
 
