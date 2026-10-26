@@ -66,6 +66,7 @@
     $("featured").append(
       el("a", { class: "tile", href: `#projects`, "data-project": slug(p.name), style: `--c:${p.color}` }, [
         el("span", { class: "tile-kind mono", text: p.kind }),
+        p.status && el("span", { class: "wip mono", text: p.status }),
         el("span", { class: "tile-name", text: p.name }),
         el("span", { class: "tile-arrow", "aria-hidden": "true", text: "→" }),
       ])
@@ -117,7 +118,10 @@
         el("div", { class: "project-index mono", text: String(n + 1).padStart(2, "0") }),
         el("div", { class: "project-main" }, [
           el("p", { class: "project-kind mono", text: p.kind }),
-          el("h2", { class: "project-name", text: p.name }),
+          el("h2", { class: "project-name" }, [
+            document.createTextNode(p.name),
+            p.status && el("span", { class: "wip mono", text: p.status }),
+          ]),
           el("p", { class: "project-summary", text: p.summary }),
           chips(p.tags, "chips small"),
           links,

@@ -91,6 +91,7 @@ window.SITE = {
     {
       name: "Fitcheck",
       kind: "3D web app",
+      status: "Work in progress", // shows as a badge; delete this line when it's done
       color: "#a78bfa",
       summary:
         "Try on clothes from any store on your own 3D model. Paste a link to a single piece (Zara pants, PacSun sneakers), pick your size, and see the whole outfit head to toe. It estimates how each size will fit you, and every piece is saved with a link back to buy it.",

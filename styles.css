@@ -221,6 +221,14 @@ main.wrap { padding-top: 40px; padding-bottom: 40px; }
   font-family: var(--mono); font-size: 0.86em; padding: 1px 6px; border-radius: 6px;
   background: var(--surface-2); border: 1px solid var(--line); color: var(--text); overflow-wrap: anywhere;
 }
+.wip {
+  display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; white-space: nowrap;
+  margin-left: 14px; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.04em;
+  font-size: 0.72rem; font-weight: 500; line-height: 1.4; text-transform: uppercase;
+  color: #ffc857; background: rgba(255, 200, 87, 0.1); border: 1px solid rgba(255, 200, 87, 0.35);
+}
+.wip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.tile .wip { align-self: flex-start; margin: 0; font-size: 0.62rem; padding: 3px 8px; }
 .link-note { margin: 12px 0 0; font-size: 0.88rem; color: var(--muted); max-width: 68ch; }
 
 /* Labs */
