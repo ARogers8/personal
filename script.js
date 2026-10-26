@@ -67,13 +67,11 @@
     );
   });
 
-  // ---- Projects ----
-  S.projects.forEach((p, n) => {
-    const id = slug(p.name);
+  // Click-to-open boxes: one toggle button per section, each opening its own box.
+  function drawers(id, label, sections) {
     const panels = el("div", { class: "drawers" });
     const toggles = el("div", { class: "toggles" });
-
-    (p.sections || []).forEach((sec, i) => {
+    (sections || []).forEach((sec, i) => {
       const panelId = `${id}-sec-${i}`;
       const btn = el("button", { class: "toggle", type: "button", "aria-expanded": "false", "aria-controls": panelId }, [
         el("span", { class: "toggle-icon", "aria-hidden": "true" }),
@@ -82,7 +80,7 @@
       const body = Array.isArray(sec.items)
         ? el("ul", { class: "drawer-list" }, sec.items.map((t) => el("li", { text: t })))
         : el("p", { text: sec.text || "" });
-      const drawer = el("div", { class: "drawer", id: panelId, role: "region", "aria-label": `${p.name}: ${sec.title}` }, [
+      const drawer = el("div", { class: "drawer", id: panelId, role: "region", "aria-label": `${label}: ${sec.title}` }, [
         el("div", { class: "drawer-inner" }, [
           el("div", { class: "drawer-box" }, [el("h4", { class: "mono", text: sec.title }), body]),
         ]),
@@ -95,6 +93,13 @@
       toggles.append(btn);
       panels.append(drawer);
     });
+    return [toggles, panels];
+  }
+
+  // ---- Projects ----
+  S.projects.forEach((p, n) => {
+    const id = slug(p.name);
+    const [toggles, panels] = drawers(id, p.name, p.sections);
 
     const links = el("div", { class: "actions" }, [
       p.links.live && button("Live site ↗", p.links.live, true),
@@ -119,14 +124,24 @@
 
   // ---- Labs ----
   S.labs.forEach((l) => {
+    const [toggles, panels] = drawers(`lab-${slug(l.number || l.name)}`, l.name, l.sections);
     $("lab-list").append(
       el("article", { class: "lab" }, [
-        el("p", { class: "project-kind mono", text: [l.course, l.date].filter(Boolean).join(" · ") }),
+        el("div", { class: "lab-top" }, [
+          el("span", { class: "lab-number mono", text: l.number || "" }),
+          el("span", { class: "lab-date mono", text: l.date || "" }),
+        ]),
         el("h3", { text: l.name }),
-        el("p", { class: "muted", text: l.summary }),
-        l.steps && l.steps.length && el("ol", { class: "steps" }, l.steps.map((s) => el("li", { text: s }))),
+        el("p", { class: "project-kind mono", text: l.course || "" }),
+        el("p", { class: "lab-summary", text: l.summary }),
         chips(l.tools, "chips small"),
+        l.report && el("p", { class: "lab-report mono" }, [
+          el("span", { class: "lock", "aria-hidden": "true" }),
+          el("span", { text: `${l.report}. Kept private for academic integrity, available on request.` }),
+        ]),
         l.link && el("div", { class: "actions" }, [button("View writeup ↗", l.link)]),
+        toggles,
+        panels,
       ])
     );
   });

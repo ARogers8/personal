@@ -15,7 +15,7 @@
  */
 
 window.SITE = {
-  name: "Your Name",
+  name: "Andrew Rogers",
   role: "IT student building apps with AI, 3D graphics and encryption",
   // Put your photo in the "assets" folder and update the file name here.
   photo: "assets/photo.svg",
@@ -24,11 +24,11 @@ window.SITE = {
 
   about: {
     paragraphs: [
-      "I'm an Information Technology student at [Your University], graduating [Month Year]. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
+      "I'm an Information Technology student at James Madison University, graduating [Month Year]. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
       "I'm looking for an internship or entry-level role in [IT support / networking / cloud / software development]. I learn fast, document what I build, and like shipping things people actually use.",
     ],
     facts: [
-      { label: "School", value: "[Your University]" },
+      { label: "School", value: "James Madison University" },
       { label: "Major", value: "Information Technology" },
       { label: "Graduating", value: "[Month Year]" },
       { label: "Location", value: "[City, State]" },
@@ -37,6 +37,7 @@ window.SITE = {
       "JavaScript", "TypeScript", "Python", "React", "Next.js", "Node.js",
       "SQL / PostgreSQL", "Prisma", "three.js", "REST APIs", "Claude API",
       "Git & GitHub Actions", "Vercel", "Linux",
+      "Routing (static, RIP)", "DNS / DHCP", "Wireshark", "NGINX",
     ],
     certifications: [
       // e.g. "CompTIA A+ (2025)"
@@ -214,28 +215,97 @@ window.SITE = {
     },
   ],
 
+  // Course labs are summarized here, not linked, so the reports can't be copied by
+  // future students. "report" is shown as a note instead of a download.
   labs: [
     {
-      name: "Example Lab: Active Directory Home Lab",
-      course: "Course name or 'Personal lab'",
-      date: "Fall 2026",
-      summary: "What you set up and why.",
-      tools: ["VirtualBox", "Windows Server 2022", "PowerShell"],
-      steps: [
-        "Installed Windows Server and promoted it to a domain controller",
-        "Created OUs, users and group policies",
-        "Joined a Windows 11 client to the domain",
+      name: "Static & Dynamic Routing",
+      number: "Lab 1",
+      course: "IT 333 · Advanced Networking for IT",
+      date: "Sep 2026",
+      summary:
+        "Built a small multi-network lab out of Linux virtual machines and got traffic flowing between them three ways: through a software bridge, with hand-written static routes, and with routers that learn routes from each other.",
+      tools: ["VMware", "Linux", "FRRouting", "RIP", "Wireshark", "iproute2", "ipcalc"],
+      report: "51-page team report with screenshots and packet captures",
+      sections: [
+        {
+          title: "What I did",
+          items: [
+            "Cloned and wired up host, bridge and router VMs across separate virtual networks (vmnets) and LAN segments.",
+            "Turned a Linux VM into a learning Ethernet bridge and confirmed two hosts could talk through it.",
+            "Planned subnets with ipcalc and showed why hosts on different network IDs can't reach each other directly.",
+            "Configured two Linux routers with IP forwarding and static routes, and traced each failed ping to the missing route that caused it.",
+            "Installed FRRouting and replaced the static routes with dynamic routing, then watched the routers advertise routes to each other.",
+            "Captured and explained the traffic at every hop in Wireshark.",
+          ],
+        },
+        {
+          title: "Key takeaways",
+          items: [
+            "Static routing is precise but fully manual. Dynamic routing lets routers share what they know and adapt automatically.",
+            "Reading routing tables (ip route) and ARP/neighbor tables is the fastest way to find where a packet stops.",
+          ],
+        },
       ],
-      link: "", // writeup, repo, or screenshots
     },
     {
-      name: "Example Lab: Network Traffic Analysis",
-      course: "Course name",
-      date: "Spring 2026",
-      summary: "What you analyzed and what you found.",
-      tools: ["Wireshark", "Nmap"],
-      steps: ["Captured traffic", "Filtered by protocol", "Identified a suspicious host"],
-      link: "",
+      name: "ARP, DNS & DHCP",
+      number: "Lab 2",
+      course: "IT 333 · Advanced Networking for IT",
+      date: "Sep 2026",
+      summary:
+        "Took apart the services every network depends on: how a host finds a neighbor's hardware address, how a name becomes an IP address, and how devices get an address automatically, even across routers.",
+      tools: ["Wireshark", "dig", "nslookup", "resolvectl", "arping", "ISC DHCP server", "Linux"],
+      report: "53-page team report with screenshots and packet captures",
+      sections: [
+        {
+          title: "What I did",
+          items: [
+            "Captured ARP request/reply exchanges in Wireshark and proved how ICMP traffic fills the ARP cache.",
+            "Compared local name resolution (/etc/hosts and mDNS) with real DNS lookups.",
+            "Walked a DNS lookup by hand with dig, from a root server to the .edu servers to the university's authoritative server.",
+            "Inspected the system resolver and queried a public DNS server directly to compare answers and ports.",
+            "Set up an ISC DHCP server, read its lease files, and traced the full Discover, Offer, Request and Acknowledge exchange.",
+            "Configured a DHCP relay so hosts on another subnet could get addresses, and showed the relay turning a broadcast into a routed unicast.",
+          ],
+        },
+        {
+          title: "Key takeaways",
+          items: [
+            "Recursive vs. iterative DNS resolution, and the role of resolvers, root and authoritative servers.",
+            "Routers block broadcasts, so DHCP needs relay agents to serve more than one subnet.",
+          ],
+        },
+      ],
+    },
+    {
+      name: "Web Architecture & REST APIs",
+      number: "Lab 3",
+      course: "IT 333 · Advanced Networking for IT",
+      date: "Oct 2026",
+      summary:
+        "Built and compared three generations of web app on Linux servers: a classic form-and-reload site, the same site using AJAX, and a REST API, then watched each one on the wire to see what actually changes.",
+      tools: ["NGINX", "PHP", "MySQL", "MongoDB", "Node.js", "Express", "Postman", "Wireshark"],
+      report: "56-page team report with screenshots and packet captures",
+      sections: [
+        {
+          title: "What I did",
+          items: [
+            "Configured an NGINX web server with PHP and a database, and verified listening services with ss and netstat.",
+            "Built pages that submit and display database records, and traced each request from the browser to the database in Wireshark.",
+            "Rebuilt the lookup with AJAX (XMLHttpRequest returning JSON) and compared the flow graphs with and without it.",
+            "Built a REST API with Node.js, Express and MongoDB, with a data model, routes and a controller.",
+            "Tested every endpoint (GET, POST, PATCH, DELETE) in Postman and confirmed the results in the database.",
+          ],
+        },
+        {
+          title: "Key takeaways",
+          items: [
+            "AJAX updates part of a page without a full reload, which changes the traffic as much as the user experience.",
+            "REST APIs are the backbone of most modern web apps, and building one end to end made each layer concrete.",
+          ],
+        },
+      ],
     },
   ],
 
