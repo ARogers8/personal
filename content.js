@@ -26,13 +26,13 @@ window.SITE = {
 
   about: {
     paragraphs: [
-      "I'm an Information Technology student at James Madison University, graduating in December 2027. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
+      "I'm an Information Technology student at James Madison University, graduating in spring 2028. I build complete products end to end: a fitness tracker with an AI food logger, a 3D virtual try-on app, an encrypted messaging tool and a daily movie game.",
       "I'm looking for an internship or entry-level role in software development, networking or IT. I learn fast, document what I build, and like shipping things people actually use.",
     ],
     facts: [
       { label: "School", value: "James Madison University" },
       { label: "Major", value: "Information Technology" },
-      { label: "Graduating", value: "Dec 2027" },
+      { label: "Graduating", value: "Spring 2028" },
       { label: "Location", value: "Arlington, Virginia" },
     ],
     skills: [
@@ -338,6 +338,64 @@ window.SITE = {
           items: [
             "AJAX updates part of a page without a full reload, which changes the traffic as much as the user experience.",
             "REST APIs are the backbone of most modern web apps, and building one end to end made each layer concrete.",
+          ],
+        },
+      ],
+    },
+    {
+      name: "VLANs & VoIP",
+      number: "Lab 4",
+      course: "IT 333 · Advanced Networking for IT",
+      date: "Nov 2026",
+      summary:
+        "Split one switched network into VLANs and joined them back together with a router, then built a working phone system on top: softphones registering with Asterisk SIP servers and calling each other across a SIP trunk.",
+      tools: ["GNS3", "802.1Q VLANs", "Asterisk", "SIP / RTP", "Quagga", "Wireshark", "mergecap", "ipcalc"],
+      report: "63-page team report with screenshots and packet captures",
+      sections: [
+        {
+          title: "What I did",
+          items: [
+            "Built a switched LAN in GNS3 and traced how frames and ARP traffic move between switches without their MAC addresses changing.",
+            "Divided the network into VLANs, showed which pings broke and why, and read the 802.1Q VLAN tags on the trunk link.",
+            "Connected the VLANs with a router-on-a-stick and followed traffic as it was routed between them.",
+            "Set up VoIP softphones, a Quagga router and an Asterisk SIP server, then captured registration, call setup, the RTP audio stream and hang-up.",
+            "Linked two Asterisk servers with a SIP trunk and compared an unauthenticated trunk with an authenticated one in Wireshark's call flow diagrams.",
+          ],
+        },
+        {
+          title: "Key takeaways",
+          items: [
+            "VLANs separate traffic at Layer 2, so devices in different VLANs need a router to talk even on the same switches.",
+            "SIP only sets up and tears down a call, and the voice itself travels separately over RTP.",
+            "Authentication on a SIP trunk matters: without it, one server forwards calls to the other with no challenge.",
+          ],
+        },
+      ],
+    },
+    {
+      name: "Wireless Networking & Security",
+      number: "Lab 5",
+      course: "IT 333 · Advanced Networking for IT",
+      date: "Nov 2026",
+      summary:
+        "Turned a Raspberry Pi into a Wi-Fi access point, showed why WPA2 passwords can be cracked once a handshake is captured, and published a web server behind it with port forwarding.",
+      tools: ["Raspberry Pi", "Wi-Fi access point", "Wireless sniffing", "WPA/WPA2", "Port forwarding", "Apache", "Linux"],
+      report: "Team report with network diagrams",
+      sections: [
+        {
+          title: "What I did",
+          items: [
+            "Configured a Raspberry Pi as a Wi-Fi access point behind a home router and connected wireless clients to it.",
+            "Captured the WPA2 4-way handshake and group rekeys with a wireless sniffer, then ran a dictionary attack on a weak passphrase.",
+            "Forwarded a port on the Pi so a web server on a wireless client could be reached from the wired network.",
+            "Drew the network diagram for each step, with every device, address and link.",
+          ],
+        },
+        {
+          title: "Key takeaways",
+          items: [
+            "WPA/WPA2 Personal can be cracked offline from one captured handshake if the passphrase is weak, which is the problem WPA3 fixes.",
+            "Port forwarding is how a service behind NAT is made reachable from outside, so it should only expose what is needed.",
           ],
         },
       ],
