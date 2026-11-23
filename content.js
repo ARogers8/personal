@@ -406,7 +406,7 @@ window.SITE = {
     blurb: "Email is the fastest way to reach me. I usually reply within a day.",
     email: "roger5am@dukes.jmu.edu",
     phone: "", // optional
-    linkedin: "https://www.linkedin.com/in/andrew-r-b19b5434b/",
+    linkedin: "https://www.linkedin.com/in/andrew-m-rogers-/",
     github: "https://github.com/ARogers8",
   },
 };
